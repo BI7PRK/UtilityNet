@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{558C8EFC-DC29-4CD5-AD25-85205DBDF89D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UtilityNet</RootNamespace>
+    <AssemblyName>UtilityNet</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\UtilityNet.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AjaxResult.cs" />
+    <Compile Include="CacheHelper.cs" />
+    <Compile Include="CloneDeriveToBase.cs" />
+    <Compile Include="CookieHelper.cs" />
+    <Compile Include="DateTimeUtil.cs" />
+    <Compile Include="Extension\EnumDisplayAttribute.cs" />
+    <Compile Include="Extension\EnumExtend.cs" />
+    <Compile Include="Extension\StringExtend.cs" />
+    <Compile Include="FileIO\FileManager.cs" />
+    <Compile Include="FileIO\FileUploader.cs" />
+    <Compile Include="FileIO\LogHelper.cs" />
+    <Compile Include="FileIO\VirtualPath.cs" />
+    <Compile Include="Http\ParamAttributes.cs" />
+    <Compile Include="Http\HttpProxy.cs" />
+    <Compile Include="Http\IParams.cs" />
+    <Compile Include="ImageUtity.cs" />
+    <Compile Include="Http\ImgProtectHandler.cs" />
+    <Compile Include="ITryParst.cs" />
+    <Compile Include="JsonSerializer.cs" />
+    <Compile Include="OAuth2\AuthorizeCore.cs" />
+    <Compile Include="OAuth2\AuthBaseParams.cs" />
+    <Compile Include="OAuth2\BuildDataValue.cs" />
+    <Compile Include="OAuth2\BuildSettings.cs" />
+    <Compile Include="OAuth2\OAuthConfigBase.cs" />
+    <Compile Include="OAuth2\OpenIdBaseParams.cs" />
+    <Compile Include="OAuth2\ResponseBase.cs" />
+    <Compile Include="OAuth2\SubjectAndDescription.cs" />
+    <Compile Include="OAuth2\ToketBaseParams.cs" />
+    <Compile Include="Paging.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestHelper.cs" />
+    <Compile Include="RewriterHandler.cs" />
+    <Compile Include="SerializerHelper.cs" />
+    <Compile Include="StackConle.cs" />
+    <Compile Include="RewriterModule.cs" />
+    <Compile Include="StringBuffer.cs" />
+    <Compile Include="UrlRewriterConfig.cs" />
+    <Compile Include="UserAgent.cs" />
+    <Compile Include="Utility.cs" />
+    <Compile Include="VerifyCode.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
