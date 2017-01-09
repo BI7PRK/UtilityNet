@@ -68,6 +68,7 @@
     <Compile Include="Http\ImgProtectHandler.cs" />
     <Compile Include="ITryParst.cs" />
     <Compile Include="JsonSerializer.cs" />
+    <Compile Include="LunisolarCalendar.cs" />
     <Compile Include="OAuth2\AuthorizeCore.cs" />
     <Compile Include="OAuth2\AuthBaseParams.cs" />
     <Compile Include="OAuth2\BuildDataValue.cs" />
