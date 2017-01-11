@@ -68,7 +68,7 @@
     <Compile Include="Http\ImgProtectHandler.cs" />
     <Compile Include="ITryParst.cs" />
     <Compile Include="JsonSerializer.cs" />
-    <Compile Include="LunisolarCalendar.cs" />
+    <Compile Include="Extension\LunisolarCalendar.cs" />
     <Compile Include="OAuth2\AuthorizeCore.cs" />
     <Compile Include="OAuth2\AuthBaseParams.cs" />
     <Compile Include="OAuth2\BuildDataValue.cs" />
@@ -90,6 +90,7 @@
     <Compile Include="UserAgent.cs" />
     <Compile Include="Utility.cs" />
     <Compile Include="VerifyCode.cs" />
+    <Compile Include="XComparable.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

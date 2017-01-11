@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 
-namespace UtilityNet
+namespace UtilityNet.Extension
 {
     /// <summary>
     /// 农历
@@ -133,8 +130,9 @@ namespace UtilityNet
         /// <summary>
         /// 农历转成阳历
         /// </summary>
-        /// <param name="lunar">农历</param>
-        /// <param name="isLeap">是否为闰月</param>
+        /// <param name="year"></param>
+        /// <param name="month"></param>
+        /// <param name="day"></param>
         /// <returns></returns>
         public static DateTime ToSolarDate(int year, int month, int day)
         {
