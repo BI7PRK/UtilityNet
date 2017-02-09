@@ -301,9 +301,10 @@ namespace UtilityNet.Http
                     newStream.Write(setbyte, 0, reader);
                     reader = _stream.Read(setbyte, 0, setbyte.Length);
                     totalDownloadedByte += reader;
-
-                    ReadAction?.Invoke(totalBytes, totalDownloadedByte);
-
+                    if (ReadAction != null)
+                    {
+                        ReadAction.Invoke(totalBytes, totalDownloadedByte);
+                    }
                 }
                 _stream.Close();
                 newStream.Close();

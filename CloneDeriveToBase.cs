@@ -10,7 +10,7 @@ namespace UtilityNet
     /// 将派生类的值反射到基类
     /// </summary>
     /// <typeparam name="TDerive">派生类</typeparam>
-    public abstract class CloneDeriveToBase<TDerive> where TDerive : new ()
+    public abstract class CloneDeriveToBase<TDerive> where TDerive : class, new ()
     {
         /// <summary>
         /// 复制值
@@ -30,7 +30,12 @@ namespace UtilityNet
             {
                 return TDer;
             }
-            var bFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.GetProperty | BindingFlags.SetProperty;
+            var bFlags = BindingFlags.Instance 
+                | BindingFlags.Public 
+                | BindingFlags.GetProperty 
+                | BindingFlags.SetProperty 
+                | BindingFlags.IgnoreCase;
+
             foreach (var item in derType.GetProperties(bFlags))
             {
                 try
