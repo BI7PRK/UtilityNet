@@ -25,21 +25,24 @@ namespace UtilityNet
             string strCode = string.Empty;
             if (!numOnly)
             {
-                int number = 0;
-                char code;
                 Random random = new Random();
+                int code;
                 for (int i = 0; i < len; i++)
                 {
-                    number = random.Next();
-                    if (number % 2 == 0)
+                    int rand = random.Next();
+                    switch (rand % 3)
                     {
-                        code = (char)('0' + (char)(number % 10));
+                        case 1:
+                            code = 65 + rand % 26;
+                            break;
+                        case 2:
+                            code = 97 + rand % 26;
+                            break;
+                        default:
+                            code = 48 + rand % 10;
+                            break;
                     }
-                    else
-                    {
-                        code = (char)('A' + (char)(number % 26));
-                    }
-                    strCode += code.ToString();
+                    strCode += ((char)code).ToString();
                 }
             }
             else

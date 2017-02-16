@@ -10,7 +10,12 @@ namespace UtilityNet
 {
     public abstract class ImageUtity
     {
-
+        /// <summary>
+        /// 将图片转成Base64字符数据
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="format"></param>
+        /// <returns></returns>
         public static string ImageToBase64(Image image, ImageFormat format)
         {
             using (MemoryStream ms = new MemoryStream())
@@ -21,6 +26,11 @@ namespace UtilityNet
             }
         }
 
+        /// <summary>
+        /// 将Base64字符数据转成图片
+        /// </summary>
+        /// <param name="base64String"></param>
+        /// <returns></returns>
         public static Image Base64ToImage(string base64String)
         {
             byte[] imageBytes = Convert.FromBase64String(base64String);
@@ -100,10 +110,10 @@ namespace UtilityNet
         /// <summary>
         /// 保存缩略图
         /// </summary>
-        /// <param name="filename">保存文件全路径</param>
+        /// <param name="filename">源图片文件的绝对路径</param>
         /// <param name="size"></param>
-        /// <param name="newFile">保存的文件名</param>
-        /// <returns>返回保存文件的全路径</returns>
+        /// <param name="newFile">保存文件的绝对路径</param>
+        /// <returns>返回保存文件的绝对路径</returns>
         public static string SaveThumnail(string filename, Size size, string newFile = null)
         {
             var image = CreateThumnail(Image.FromFile(filename), size);
@@ -119,7 +129,10 @@ namespace UtilityNet
                 }));
             }
             //获得包含有关内置图像编码解码器的信息的ImageCodecInfo 对象.
-            ImageCodecInfo jpegICI = ImageCodecInfo.GetImageEncoders().Where(w => w.FilenameExtension == fileInfo.Extension.ToUpperInvariant()).FirstOrDefault();
+            ImageCodecInfo jpegICI = ImageCodecInfo.GetImageEncoders()
+                .Where(w => w.FilenameExtension == fileInfo.Extension.ToUpperInvariant())
+                .FirstOrDefault();
+
             if (jpegICI != null)
             {
                 EncoderParameters encoderParams = new EncoderParameters();
