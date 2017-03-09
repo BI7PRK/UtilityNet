@@ -306,8 +306,9 @@ namespace UtilityNet.Http
                         ReadAction.Invoke(totalBytes, totalDownloadedByte);
                     }
                 }
-                _stream.Close();
                 newStream.Close();
+                newStream.Dispose();
+                _stream.Close();
                 getRespinst.Close();
                 myReqyest.Abort();
                 return saveName;
