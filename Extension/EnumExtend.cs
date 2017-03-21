@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 
@@ -40,6 +41,12 @@ namespace UtilityNet.Extension
             if (value.Any())
                 return value.First().Value;
 
+            var display = field.GetCustomAttributes(typeof(DisplayAttribute), true) as DisplayAttribute[];
+
+            if (display.Any())
+                return display.First().Description;
+
+
             return string.Empty;
         }
         /// <summary>
@@ -51,6 +58,27 @@ namespace UtilityNet.Extension
         {
             return GetDefaultValue(enumValue).ToString();
         }
+
+       
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="enumValue"></param>
+        /// <returns></returns>
+        public static string GetDispayName(this Enum enumValue)
+        {
+            var type = enumValue.GetType();
+            var field = type.GetField(enumValue.ToString());
+            if (field == null) return string.Empty;
+            var value = field.GetCustomAttributes(typeof(DisplayAttribute), true) as DisplayAttribute[];
+
+            if (value.Any())
+                return value.First().Name;
+
+            return string.Empty;
+        }
+
+        
     }
     /// <summary>
     /// 将枚举遍历
