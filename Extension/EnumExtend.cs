@@ -24,6 +24,12 @@ namespace UtilityNet.Extension
             if (descriptions.Any())
                 return descriptions.First().Description;
 
+
+            var display = field.GetCustomAttributes(typeof(DisplayAttribute), true) as DisplayAttribute[];
+
+            if (display.Any())
+                return display.First().Description;
+
             return string.Empty;
         }
         /// <summary>
@@ -40,13 +46,7 @@ namespace UtilityNet.Extension
 
             if (value.Any())
                 return value.First().Value;
-
-            var display = field.GetCustomAttributes(typeof(DisplayAttribute), true) as DisplayAttribute[];
-
-            if (display.Any())
-                return display.First().Description;
-
-
+            
             return string.Empty;
         }
         /// <summary>
