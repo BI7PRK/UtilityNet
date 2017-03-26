@@ -78,12 +78,27 @@ namespace UtilityNet.Extension
             return string.Empty;
         }
 
-        
+        /// <summary>
+        /// 将枚举遍历成字典
+        /// </summary>
+        /// <returns></returns>
+        public static Dictionary<string, T> GetDictionary<T>(this T model)
+        {
+            Dictionary<string, T> dict = new Dictionary<string, T>();
+            Type sourceType = typeof(T);
+            foreach (string key in Enum.GetNames(sourceType))
+            {
+                dict.Add(key, (T)Enum.Parse(sourceType, key));
+            }
+            return dict;
+        }
+
     }
     /// <summary>
     /// 将枚举遍历
     /// </summary>
     /// <typeparam name="T">枚举</typeparam>
+    [Obsolete]
     public class EnumForEach<T>
     {
         /// <summary>
