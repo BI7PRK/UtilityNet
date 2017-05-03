@@ -81,7 +81,7 @@ namespace UtilityNet.Http
         /// <param name="url"></param>
         /// <param name="dict"></param>
         /// <returns></returns>
-        public static string HttpPost(string url, Dictionary<string, object> dict)
+        public static HttpResult HttpPost(string url, Dictionary<string, object> dict)
         {
             CookieCollection ck = null;
             return HttpPost(url, DictionaryString(dict), ref ck);
@@ -92,7 +92,7 @@ namespace UtilityNet.Http
         /// <param name="url"></param>
         /// <param name="param">IParams 接口，内置属性信息可定义提交键值</param>
         /// <returns></returns>
-        public static string HttpPost(string url, IParams param)
+        public static HttpResult HttpPost(string url, IParams param)
         {
             CookieCollection ck = null;
             return HttpPost(url, ParamFormatString(param), ref ck);
@@ -104,9 +104,12 @@ namespace UtilityNet.Http
         /// <param name="param"></param>
         /// <param name="cookie">如果登陆时，创建一个新对象传入。</param>
         /// <returns></returns>
-        public static string HttpPost(string url, string param, ref CookieCollection cookie)
+        public static HttpResult HttpPost(string url, string param, ref CookieCollection cookie)
         {
-            string html = string.Empty;
+            var result = new HttpResult();
+            result.RequesUrl = url;
+            result.StatusCode = HttpStatusCode.BadRequest;
+            
             HttpWebRequest request = null;
             try
             {
@@ -134,8 +137,9 @@ namespace UtilityNet.Http
 
                 using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                 {
+                    result.StatusCode = response.StatusCode;
                     StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
-                    html = reader.ReadToEnd();
+                    result.Response = reader.ReadToEnd();
                     reader.Close();
 
                     if (cookie != null)
@@ -147,11 +151,11 @@ namespace UtilityNet.Http
             }
             catch (WebException webEx)
             {
-                html = webEx.Message;
+                result.Response = webEx.Message;
             }
             catch (UriFormatException urlEx)
             {
-                html = urlEx.Message;
+                result.Response = urlEx.Message;
             }
             finally
             {
@@ -161,15 +165,18 @@ namespace UtilityNet.Http
                     request = null;
                 }
             }
-            return html;
+            return result;
         }
+        
+
+
         /// <summary>
         /// Get方法
         /// </summary>
         /// <param name="url"></param>
         /// <param name="dict"></param>
         /// <returns></returns>
-        public static string HttpGet(string url, Dictionary<string, object> dict)
+        public static HttpResult HttpGet(string url, Dictionary<string, object> dict)
         {
             return HttpGet(url, DictionaryString(dict));
         }
@@ -179,7 +186,7 @@ namespace UtilityNet.Http
         /// <param name="url"></param>
         /// <param name="param">IParams 接口，内置属性信息可定义提交键值</param>
         /// <returns></returns>
-        public static string HttpGet(string url, IParams param)
+        public static HttpResult HttpGet(string url, IParams param)
         {
             return HttpGet(url, ParamFormatString(param));
         }
@@ -190,9 +197,11 @@ namespace UtilityNet.Http
        /// <param name="query"></param>
        /// <param name="cookie">提交的Cookies信息</param>
        /// <returns></returns>
-        public static string HttpGet(string url, string query, CookieCollection cookie = null)
+        public static HttpResult HttpGet(string url, string query, CookieCollection cookie = null)
         {
-            string html = string.Empty;
+            var result = new HttpResult();
+            result.RequesUrl = url;
+            result.StatusCode = HttpStatusCode.BadRequest;
             HttpWebRequest request = null;
             try
             {
@@ -210,18 +219,18 @@ namespace UtilityNet.Http
                 using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                 {
                     StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
-                    html = reader.ReadToEnd();
+                    result.Response = reader.ReadToEnd();
                     reader.Close();
                     response.Close();
                 }
             }
             catch (WebException webEx)
             {
-                html = webEx.Message;
+                result.Response = webEx.Message;
             }
             catch (UriFormatException urlEx)
             {
-                html = urlEx.Message;
+                result.Response = urlEx.Message;
             }
             finally
             {
@@ -231,7 +240,7 @@ namespace UtilityNet.Http
                     request = null;
                 }
             }
-            return html;
+            return result;
         }
         /// <summary>
         /// 获取一个图片数据

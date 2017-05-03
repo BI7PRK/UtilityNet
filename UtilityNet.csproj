@@ -61,6 +61,7 @@
     <Compile Include="FileIO\FileUploader.cs" />
     <Compile Include="FileIO\LogHelper.cs" />
     <Compile Include="FileIO\VirtualPath.cs" />
+    <Compile Include="Http\HttpResult.cs" />
     <Compile Include="Http\ParamAttributes.cs" />
     <Compile Include="Http\HttpProxy.cs" />
     <Compile Include="Http\IParams.cs" />

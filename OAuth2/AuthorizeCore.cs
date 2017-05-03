@@ -27,7 +27,7 @@ namespace UtilityNet.OAuth2
         /// <returns></returns>
         public virtual string GetAccessToken(string url, ToketBaseParams dict)
         {
-            return HttpProxy.HttpPost(url, dict);
+            return HttpProxy.HttpPost(url, dict).Response;
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace UtilityNet.OAuth2
         /// <returns></returns>
         public virtual string RefreshOAuthToke(string url, IParams dict)
         {
-            return HttpProxy.HttpPost(url, dict);
+            return HttpProxy.HttpPost(url, dict).Response;
         }
         /// <summary>
         /// 根据access_token获取用户信息
@@ -50,7 +50,7 @@ namespace UtilityNet.OAuth2
         /// <returns></returns>
         public virtual string GetFromAuthToket(string url, OpenIdBaseParams dict)
         {
-            return HttpProxy.HttpPost(url, dict);
+            return HttpProxy.HttpPost(url, dict).Response;
         }
     }
 }
