@@ -19,9 +19,8 @@ namespace UtilityNet.FileIO
         /// <returns></returns>
         public static string GetAbsolutelyPath(string path)
         {
-            path = path.Replace("/", "\\");
-            var str = Path.Combine(AbsolutelyRootPath, path.TrimStart('\\'));
-            return Path.Combine(AbsolutelyRootPath, str);
+            var fullPath = HttpContext.Current.Server.MapPath(path);
+            return fullPath;
         }
         /// <summary>
         /// 绝对根路径
@@ -30,7 +29,7 @@ namespace UtilityNet.FileIO
         {
             get
             {
-                return AppDomain.CurrentDomain.BaseDirectory;
+                return HttpContext.Current.Server.MapPath("~/");
             }
         }
         /// <summary>
@@ -80,7 +79,8 @@ namespace UtilityNet.FileIO
             {
                 newPath = GetAbsolutelyPath(path);
             }
-            else {
+            else
+            {
                 newPath = Path.Combine(CurrentAbsolutePath, path);
             }
             if (!Directory.Exists(newPath))
