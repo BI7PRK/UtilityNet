@@ -54,7 +54,7 @@ namespace UtilityNet.Extension
         /// </summary>
         /// <param name="enumValue"></param>
         /// <returns></returns>
-        public static string GetStringValue(this Enum enumValue)
+        public static string GetDefstrValue(this Enum enumValue)
         {
             return GetDefaultValue(enumValue).ToString();
         }
@@ -65,7 +65,7 @@ namespace UtilityNet.Extension
         /// </summary>
         /// <param name="enumValue"></param>
         /// <returns></returns>
-        public static string GetDispayName(this Enum enumValue)
+        public static string GetDisplayName(this Enum enumValue)
         {
             var type = enumValue.GetType();
             var field = type.GetField(enumValue.ToString());
